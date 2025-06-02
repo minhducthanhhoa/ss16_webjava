@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h2>Thêm xe buýt mới</h2>
+
+<form th:action="@{/admin/bus/add}" th:object="${bus}" method="post">
+    <label>Biển số: </label>
+    <input type="text" th:field="*{licensePlate}"/>
+    <span th:if="${#fields.hasErrors('licensePlate')}" th:errors="*{licensePlate}"></span><br>
+
+    <label>Loại xe: </label>
+    <select th:field="*{busType}">
+        <option value="NORMAL">NORMAL</option>
+        <option value="VIP">VIP</option>
+        <option value="LUXURY">LUXURY</option>
+    </select>
+    <span th:if="${#fields.hasErrors('busType')}" th:errors="*{busType}"></span><br>
+
+    <label>Số hàng ghế: </label>
+    <input type="number" th:field="*{rowSeat}"/>
+    <span th:if="${#fields.hasErrors('rowSeat')}" th:errors="*{rowSeat}"></span><br>
+
+    <label>Số cột ghế: </label>
+    <input type="number" th:field="*{colSeat}"/>
+    <span th:if="${#fields.hasErrors('colSeat')}" th:errors="*{colSeat}"></span><br>
+
+    <label>Link ảnh: </label>
+    <input type="text" th:field="*{image}"/>
+    <span th:if="${#fields.hasErrors('image')}" th:errors="*{image}"></span><br>
+
+    <button type="submit">Lưu</button>
+    <a th:href="@{/admin/bus}">Hủy</a>
+</form>
+</body>
+</html>

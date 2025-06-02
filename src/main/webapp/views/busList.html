@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h2>Quản lý xe buýt</h2>
+
+<a th:href="@{/admin/bus/add}">Thêm xe mới</a>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Biển số</th>
+        <th>Loại xe</th>
+        <th>Số ghế</th>
+        <th>Ảnh</th>
+        <th>Hành động</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="bus : ${buses}">
+        <td th:text="${bus.id}"></td>
+        <td th:text="${bus.licensePlate}"></td>
+        <td th:text="${bus.busType}"></td>
+        <td th:text="${bus.totalSeat}"></td>
+        <td><img th:src="@{${bus.image}}" alt="Bus image" width="100"/></td>
+        <td>
+            <a th:href="@{'/admin/bus/edit/' + ${bus.id}}">Sửa</a> |
+            <a th:href="@{'/admin/bus/delete/' + ${bus.id}}"
+               onclick="return confirm('Bạn chắc chắn muốn xóa?')">Xóa</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
